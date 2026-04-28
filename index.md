@@ -1,9 +1,12 @@
 ---
 layout: default
-title: "Continuous Improvement for COMP110"
+title: "Continuous Improvement for COMP110 — Jongyoon Park"
+description: "A data-driven proposal for adding optional pre-lecture videos to COMP110, based on the Spring 2026 mid-semester survey."
 ---
 
 # Continuous Improvement for COMP110: Who Benefits Most From Optional Pre-Lecture Videos?
+
+<p class="byline">By Jongyoon Park</p>
 
 ## Summary
 
@@ -17,23 +20,23 @@ The starting point for this project was a personal observation. As a Statistics 
 
 The first pass establishes the overall shape of demand. A histogram of `pre_lecture_videos` shows the distribution leaning heavily toward agreement: the modal response is 7 (250 students, roughly 33% of the sample), and the combined 6-and-7 group accounts for 51% of all responses. A meaningful minority disagrees, with about 14% of students sitting at ratings 1, 2, or 3.
 
-![Chart 1: Overall student support for optional pre-lecture videos](charts/01_overall_support.png)
+![Histogram of pre-lecture video support ratings]({{ '/charts/01_overall_support.png' | relative_url }})
 
 Demand is broad in the aggregate, but the more useful question is *who* is driving it. Splitting the same column by prior programming experience answers part of that question. A boxplot of `pre_lecture_videos` against `prior_exp`, ordered from least to most experience, shows the median falling as experience rises. Beginners (the "None to less than one month" bucket, n = 478) sit at a median of 6 with a tight upper quartile pinned at 7. Students with more than two years of prior experience (n = 15) sit at a median of 5 and show a much wider distribution that reaches into the disagreement zone. In proportional terms, 56.3% of beginners rate support at 6 or higher, compared with only 33.3% of the most experienced students.
 
-![Chart 2: Pre-lecture video support by prior programming experience](charts/02_by_prior_exp.png)
+![Boxplot of pre-lecture video support by prior programming experience]({{ '/charts/02_by_prior_exp.png' | relative_url }})
 
 Prior experience is one axis, but it is not the only one. The proposal for pre-lecture videos rests on the idea that they help students keep up with the live pace, which means demand should also concentrate among students who report the pace feels fast. The joint distribution of `pace` and `pre_lecture_videos`, rendered as a 7-by-7 heatmap, makes that pattern easy to read. The single hottest cell is at `pace = 5, pre_lecture_videos = 7` (83 students), and the upper-right region (pace at least 5 and pre_lecture_videos at least 6) holds the densest cluster of responses anywhere in the matrix: 243 students, or 31.8% of the combined sample. Students who feel the course is moving fast and students who want pre-lecture videos are largely the same people.
 
-![Chart 3: Joint distribution of pace perception and pre-lecture video support](charts/03_pace_heatmap.png)
+![Heatmap of perceived pace against pre-lecture video support]({{ '/charts/03_pace_heatmap.png' | relative_url }})
 
 A reasonable concern with adding pre-lecture videos is that they might end up serving primarily the CS-track students, who are arguably the most invested in the material to begin with. That concern does not survive the data. Mean support across the four `comp_major` categories falls in a narrow band, from roughly 5.3 to 5.9, and that range includes the 713 non-CS-majors who form the bulk of the class. The benefit of the proposed change is shared broadly, not captured by a CS-bound minority.
 
-![Chart 4: Average pre-lecture video support by CS major intention](charts/04_by_comp_major.png)
+![Bar chart of mean pre-lecture video support across CS-major intent categories]({{ '/charts/04_by_comp_major.png' | relative_url }})
 
 The final pass narrows the lens to the population the proposed change is most directly aimed at. A custom helper function, `filter_by_value`, isolates the 478 beginners (63% of the class). Within that subgroup, perceived pace is bucketed into Slow (1-3), Moderate (4), and Fast (5-7), and the distribution of `pre_lecture_videos` is shown as a violin plot. The shape lifts visibly as perceived pace rises. Beginners who report the course feels fast cluster near the top of the support scale, with most of their distribution sitting at 6 and 7, while beginners reporting a slower pace show a distribution that is much more spread out. Within the beginner subgroup overall, 57.1% report the pace feels fast and 56.3% want videos.
 
-![Chart 5: Beginners only - pace perception vs pre-lecture video support](charts/05_beginners_violin.png)
+![Violin plot of pre-lecture video support among beginners, split by perceived pace bucket]({{ '/charts/05_beginners_violin.png' | relative_url }})
 
 ---
 
